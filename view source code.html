@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Website Source Code</title>
+  <script>
+    function viewSourceCode() {
+      var url = document.getElementById("website-url").value;
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("source-code").value = data;
+        })
+        .catch(error => {
+          alert("Error: " + error);
+        });
+    }
+    
+    
+    
+    function viewIframeSource() {
+  var iframe = document.getElementById("myIframe");
+  var iframeDoc = (iframe.contentWindow || iframe.contentDocument);
+  if (iframeDoc.document) {
+    iframeDoc = iframeDoc.document;
+  }
+  var sourceCode = iframeDoc.documentElement.outerHTML;
+  document.getElementById("iframeSource").textContent = sourceCode;
+}
+
+    
+  </script>
+</head>
+<body>
+  <h1>View Website Source Code</h1>
+  <label for="website-url">Enter the URL of the website:</label>
+  <input type="text" id="website-url" placeholder="https://example.com">
+  <button onclick="viewSourceCode()">View Source Code</button>
+  <br><br>
+  <label for="source-code">Source Code:</label>
+  <textarea id="source-code" rows="20" cols="80" readonly></textarea>
+  
+  
+  
+  
+  <iframe id="myIframe" src="https://courses.apars.tech"></iframe>
+<button onclick="viewIframeSource()">View Iframe Source</button>
+<pre id="iframeSource"></pre>
+
+  
+</body>
+</html>
